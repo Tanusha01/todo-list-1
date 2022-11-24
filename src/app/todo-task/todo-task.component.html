@@ -1,0 +1,15 @@
+<div class="task-wrapper">
+  <mat-checkbox [checked]="task.completed"
+                (change)="complete($event.checked)">
+  </mat-checkbox>
+
+  <div class="task-content">
+    <div [ngClass]="{ 'completed': task.completed }">{{task.title}}</div>
+    <button mat-stroked-button
+            color="primary"
+            class="add-button"
+    >Edit
+    </button>
+    <button mat-stroked-button color="warn" (click)="removeTask()">Remove</button>
+  </div>
+</div>
