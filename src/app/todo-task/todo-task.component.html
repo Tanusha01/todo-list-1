@@ -6,6 +6,7 @@
     <div [ngClass]="{ 'completed': task.completed }">{{task.title}}</div>
   </div>
   <div class="action-buttons">
+    <button mat-stroked-button color="primary" (click)="editTask()">Edit</button>
     <button mat-stroked-button color="warn" (click)="removeTask()">Remove</button>
   </div>
 </div>
