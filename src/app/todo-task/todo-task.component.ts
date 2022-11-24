@@ -11,6 +11,9 @@ export class TodoTaskComponent {
 
   @Output() remove: EventEmitter<number> = new EventEmitter<number>();
 
+  constructor() {
+  }
+
   removeTask(): void {
     this.remove.emit(this.task.id);
   }
