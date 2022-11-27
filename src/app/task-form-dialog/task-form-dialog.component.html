@@ -1,0 +1,28 @@
+<div class="dialog-wrapper">
+  <div class="mat-h2">Create task</div>
+
+  <form [formGroup]="taskForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [formControl]="taskForm.controls.title">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput [formControl]="taskForm.controls.description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Assignee</mat-label>
+      <mat-select [formControl]="taskForm.controls.assignee">
+        <mat-option *ngFor="let user of data.users">
+          {{user}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <mat-checkbox [formControl]="taskForm.controls.isUrgent">
+        Urgent
+      </mat-checkbox>
+  </form>
+</div>

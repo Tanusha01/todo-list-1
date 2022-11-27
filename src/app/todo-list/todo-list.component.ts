@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Task } from "../types/task.type";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { FormControl, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { TaskFormDialogComponent } from "../task-form-dialog/task-form-dialog.component";
 
 @Component({
   selector: 'app-todo-list',
@@ -13,12 +17,33 @@ export class TodoListComponent {
 
   private lastId: number = 0;
   private editedTaskId: number;
+  private users: string[] = ["John", "Alex", 'Bob'];
+
+  constructor(
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog) {
+  }
+
+  @HostListener('window:keyup.enter')
+  showNotification(): void {
+    this._snackBar.open('Task has been created', '', {
+      duration: 3 * 1000,
+    });
+  }
 
   addTask(): void {
-    if (this.newTask) {
+    /*if (this.newTask) {
       this.taskList.push({ title: this.newTask, id: ++this.lastId, completed: false });
       this.newTask = '';
-    }
+      this.showNotification();
+    }*/
+    const dialogRef = this.dialog.open(TaskFormDialogComponent, {
+      width: '600px',
+      data: { users: this.users },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   removeTask(taskId: number): void {

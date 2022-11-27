@@ -1,12 +1,7 @@
 <div class="wrapper">
   <h1 class="heading-1">My Todo List</h1>
   <div class="todo-container">
-    <form>
-      <mat-form-field>
-        <mat-label>Enter a task</mat-label>
-        <input matInput [(ngModel)]="newTask" name="newTask" value="task">
-      </mat-form-field>
-
+    <div [ngClass]="{ 'todo-container': true }">
       <ng-container *ngIf="!editing">
         <button mat-raised-button
                 color="primary"
@@ -27,7 +22,7 @@
                 (click)="cancel()"
         >Cancel</button>
       </ng-container>
-    </form>
+    </div>
 
     <div class="task-list">
       <ng-container *ngFor="let task of taskList">
