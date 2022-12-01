@@ -19,4 +19,9 @@
     text-decoration: line-through;
     opacity: 0.5;
   }
+
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+  }
 }

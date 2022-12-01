@@ -11,7 +11,14 @@ import { TaskFormDialogComponent } from "../task-form-dialog/task-form-dialog.co
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent {
-  public taskList: Task[] = [];
+  public taskList: Task[] = [{
+    id: 0,
+    title: 'Task',
+    description: 'Descr',
+    assignee: 'John',
+    isUrgent: false,
+    completed: false
+  }];
   public newTask: string;
   public editing: boolean;
 
@@ -24,7 +31,7 @@ export class TodoListComponent {
     public dialog: MatDialog) {
   }
 
-  @HostListener('window:keyup.enter')
+ // @HostListener('window:keyup.enter')
   showNotification(): void {
     this._snackBar.open('Task has been created', '', {
       duration: 3 * 1000,
@@ -32,17 +39,19 @@ export class TodoListComponent {
   }
 
   addTask(): void {
-    /*if (this.newTask) {
-      this.taskList.push({ title: this.newTask, id: ++this.lastId, completed: false });
-      this.newTask = '';
-      this.showNotification();
-    }*/
     const dialogRef = this.dialog.open(TaskFormDialogComponent, {
       width: '600px',
       data: { users: this.users },
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.taskList.push({
+          ...result,
+          id: ++this.lastId,
+          completed: false
+        });
+      }
     });
   }
 
@@ -52,9 +61,22 @@ export class TodoListComponent {
   }
 
   editTask(taskId: number): void {
-    this.editedTaskId = taskId;
-    this.editing = true;
-    this.newTask = this.taskList.find(task => task.id === taskId).title;
+    let task = this.taskList.find(task => task.id === taskId);
+    const dialogRef = this.dialog.open(TaskFormDialogComponent, {
+      width: '600px',
+      data: { task, users: this.users },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const taskInd = this.taskList.findIndex(task => task.id === taskId);
+        this.taskList.splice(taskInd, 1);
+        this.taskList.push({
+          ...task,
+          ...result,
+        });
+      }
+    });
   }
 
   saveChanges(): void {
