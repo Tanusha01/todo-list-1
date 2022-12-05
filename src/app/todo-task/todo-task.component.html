@@ -3,7 +3,10 @@
     <mat-checkbox [checked]="task.completed"
                   (change)="complete($event.checked)">
     </mat-checkbox>
-    <div [ngClass]="{ 'completed': task.completed }">{{task.title}}</div>
+    <div [ngClass]="{ 'completed': task.completed }"
+         [tooltip]="task.title">
+      {{task.title}}
+    </div>
   </div>
   <div class="action-buttons">
     <button mat-stroked-button color="primary" (click)="editTask()">Edit</button>
