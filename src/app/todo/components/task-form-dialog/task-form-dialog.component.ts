@@ -16,7 +16,7 @@ export class TaskFormDialogComponent implements OnInit, OnDestroy {
       null,
       [Validators.required, this.titleValidator.bind({} as any)]
     ),
-    description: new FormControl<string>(null, [Validators.maxLength(50)]),
+    description: new FormControl<string>(null, [Validators.maxLength(5)]),
     assignee: new FormControl<string>(null, [Validators.required]),
     isUrgent: new FormControl<boolean>(null),
   });
@@ -44,10 +44,11 @@ export class TaskFormDialogComponent implements OnInit, OnDestroy {
   private setFormValue(): void {
     this.taskForm.setValue({
       title: this.data.task.title,
-      description: this.data.task.description || null,
+      description: 'Long description', //this.data.task.description || null,
       isUrgent: this.data.task.isUrgent,
       assignee: this.data.task.assignee
     });
+    console.log(this.taskForm.controls.description);
   }
 
   ngOnDestroy(): void {
