@@ -11,6 +11,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatButtonModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    TodoModule
+    TodoModule,
+    SharedModule
   ],
   exports: [],
   providers: [],

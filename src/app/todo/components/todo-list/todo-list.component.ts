@@ -5,6 +5,7 @@ import { FormControl, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { TaskFormDialogComponent } from "../task-form-dialog/task-form-dialog.component";
 import { TaskService } from '../../services/task.service';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-todo-list',
@@ -24,7 +25,9 @@ export class TodoListComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private taskService: TaskService) {
+    private taskService: TaskService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -40,7 +43,8 @@ export class TodoListComponent implements OnInit {
   }
 
   addTask(): void {
-    const dialogRef = this.dialog.open(TaskFormDialogComponent, {
+    this.router.navigate(['task', 'new'], { relativeTo: this.activatedRoute.parent });
+    /*const dialogRef = this.dialog.open(TaskFormDialogComponent, {
       width: '600px',
       data: { users: this.users },
     });
@@ -53,7 +57,7 @@ export class TodoListComponent implements OnInit {
           completed: false
         });
       }
-    });
+    });*/
   }
 
   removeTask(taskId: number): void {
@@ -62,7 +66,9 @@ export class TodoListComponent implements OnInit {
   }
 
   editTask(taskId: number): void {
-    let task = this.taskList.find(task => task.id === taskId);
+    this.router.navigate(['task', taskId], { relativeTo: this.activatedRoute.parent });
+
+    /*let task = this.taskList.find(task => task.id === taskId);
     const dialogRef = this.dialog.open(TaskFormDialogComponent, {
       width: '600px',
       data: { task, users: this.users },
@@ -77,7 +83,7 @@ export class TodoListComponent implements OnInit {
           ...result,
         });
       }
-    });
+    });*/
   }
 
   saveChanges(): void {

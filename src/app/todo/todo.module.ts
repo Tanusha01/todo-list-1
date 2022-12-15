@@ -15,6 +15,7 @@ import { MatOptionModule } from "@angular/material/core";
 import { TodoRoutingModule } from "./todo-routing.module";
 import { CommonModule } from "@angular/common";
 import { TooltipDirective } from "./directives/tooltip.directive";
+import { TodoTaskDetailsComponent } from './components/todo-task-details/todo-task-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TooltipDirective } from "./directives/tooltip.directive";
     TodoTaskComponent,
     TaskFormDialogComponent,
     TodoProgressComponent,
-    TooltipDirective
+    TooltipDirective,
+    TodoTaskDetailsComponent
   ],
   imports: [
     CommonModule,
