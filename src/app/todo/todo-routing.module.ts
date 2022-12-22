@@ -20,11 +20,11 @@ const routes: Routes = [
     children: [
       {
         path: 'new',
-        component: TodoTaskDetailsComponent
+        component: TodoTaskDetailsComponent,
       },
       {
         path: ':id',
-        component: TodoTaskDetailsComponent
+        component: TodoTaskDetailsComponent,
       },
     ]
   }

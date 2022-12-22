@@ -30,9 +30,13 @@ export class TodoListComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
   }
 
-  async ngOnInit(): Promise<void> {
-    this.taskList = await this.taskService.getTasks();
-    this.users = await this.taskService.getUsers();
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe(tasks => {
+      this.taskList = tasks;
+    });
+    this.taskService.getUsers().subscribe(users => {
+      this.users = users;
+    });
   }
 
  // @HostListener('window:keyup.enter')
