@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { TaskService } from "../../services/task.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Task } from '../../types/task.type';
-import { of, Subscription, take, takeUntil } from "rxjs";
+import { Observable, of, Subject, Subscription, take, takeUntil } from "rxjs";
 
 @Component({
   selector: 'app-todo-task-details',
@@ -72,6 +72,6 @@ export class TodoTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 }

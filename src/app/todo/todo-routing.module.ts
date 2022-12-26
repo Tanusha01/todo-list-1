@@ -12,19 +12,31 @@ const routes: Routes = [
   },
   {
     path: 'list',
-    component: TodoListComponent
+    component: TodoListComponent,
+    data: {
+      breadcrumb: 'Task list'
+    }
   },
   {
     path: 'task',
     component: TodoTaskDetailsComponent,
+    data: {
+      breadcrumb: 'Task'
+    },
     children: [
       {
         path: 'new',
         component: TodoTaskDetailsComponent,
+        data: {
+          breadcrumb: 'Create new task'
+        }
       },
       {
         path: ':id',
         component: TodoTaskDetailsComponent,
+        data: {
+          breadcrumb: 'Edit task'
+        }
       },
     ]
   }
