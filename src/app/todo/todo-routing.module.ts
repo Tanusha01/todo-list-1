@@ -7,31 +7,27 @@ import { TodoTaskDetailsComponent } from "./components/todo-task-details/todo-ta
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list',
+    redirectTo: 'tasks',
     pathMatch: 'full'
   },
-  {
-    path: 'list',
-    component: TodoListComponent,
+  {// todo/tasks/
+    path: 'tasks',
     data: {
-      breadcrumb: 'Task list'
-    }
-  },
-  {
-    path: 'task',
-    component: TodoTaskDetailsComponent,
-    data: {
-      breadcrumb: 'Task'
+      breadcrumb: 'Tasks'
     },
     children: [
-      {
+      {//todo/tasks
+        path: '',
+        component: TodoListComponent,
+      },
+      {//todo/tasks/new
         path: 'new',
         component: TodoTaskDetailsComponent,
         data: {
           breadcrumb: 'Create new task'
         }
       },
-      {
+      {//todo/tasks/1
         path: ':id',
         component: TodoTaskDetailsComponent,
         data: {

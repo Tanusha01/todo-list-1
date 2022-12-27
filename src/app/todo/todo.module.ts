@@ -16,6 +16,7 @@ import { TodoRoutingModule } from "./todo-routing.module";
 import { CommonModule } from "@angular/common";
 import { TooltipDirective } from "./directives/tooltip.directive";
 import { TodoTaskDetailsComponent } from './components/todo-task-details/todo-task-details.component';
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TodoTaskDetailsComponent } from './components/todo-task-details/todo-ta
     MatSelectModule,
     MatFormFieldModule,
     MatOptionModule,
+    MatExpansionModule
   ],
   exports: [],
   providers: [],

@@ -36,7 +36,7 @@ export class TodoTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.firstChild.params.subscribe(async params => {
+    this.activatedRoute.params.subscribe(async params => {
       this.taskId = params['id'];
       if (this.taskId) {
         this.task = await this.taskService.getTask(+this.taskId);

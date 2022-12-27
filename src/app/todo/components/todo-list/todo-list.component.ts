@@ -47,7 +47,7 @@ export class TodoListComponent implements OnInit {
   }
 
   addTask(): void {
-    this.router.navigate(['task', 'new'], { relativeTo: this.activatedRoute.parent });
+    this.router.navigate(['new'], { relativeTo: this.activatedRoute.parent });
     /*const dialogRef = this.dialog.open(TaskFormDialogComponent, {
       width: '600px',
       data: { users: this.users },
@@ -70,7 +70,7 @@ export class TodoListComponent implements OnInit {
   }
 
   editTask(taskId: number): void {
-    this.router.navigate(['task', taskId], { relativeTo: this.activatedRoute.parent });
+    this.router.navigate([taskId], { relativeTo: this.activatedRoute.parent });
 
     /*let task = this.taskList.find(task => task.id === taskId);
     const dialogRef = this.dialog.open(TaskFormDialogComponent, {

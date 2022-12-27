@@ -27,20 +27,22 @@ export class BreadcrumbsService {
   }
 
   // @ts-ignore
-  createBreadcrumbs(route: ActivatedRoute, breadcrumbs: Breadcrumb[] = []) {
+  createBreadcrumbs(route: ActivatedRoute, breadcrumbs: Breadcrumb[] = [], prevUrl: string = '') {
     if (route.children.length === 0) {
       return breadcrumbs;
     }
 
     for (let child of route.children) {
-      const label = route.snapshot.data['breadcrumb'];
-      const url = route.snapshot.url.map(url => url.path).join('/');
+      const label = child.snapshot.data['breadcrumb'];
+      const childUrl = child.snapshot.url.map(url => url.path).join('/');
 
-      if (label) {
+      const url = childUrl ? `${prevUrl}/${childUrl}` : prevUrl;
+
+      if (label && childUrl) {
         breadcrumbs.push({ label, url });
       }
 
-      return this.createBreadcrumbs(child, breadcrumbs);
+      return this.createBreadcrumbs(child, breadcrumbs, url);
     }
   }
 

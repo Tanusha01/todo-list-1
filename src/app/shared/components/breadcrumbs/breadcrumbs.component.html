@@ -1,6 +1,6 @@
 <div class="wrapper">
   <ng-container *ngFor="let breadcrumb of (breadcrumbs$ | async); let i = index">
-    <div class="link">
+    <div class="link" [routerLink]="breadcrumb.url">
       {{ breadcrumb.label }}
       <span *ngIf="i !== (breadcrumbs$ | async).length - 1">></span>
     </div>
